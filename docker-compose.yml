@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  dev_backend:
+    image: node:alpine
+    container_name: dev_backend
+    entrypoint: /bin/sh
+    ports:
+      - "4000:4000"
+    working_dir: /srv/app
+    volumes:
+      - type: bind
+        source: backend/
+        target: /srv/app
+    tty: true
+    restart: always
+
+  dev_frontend_vite:
+    image: node:alpine
+    container_name: dev_frontend_vite
+    entrypoint: /bin/sh
+    ports: 
+      - "5001:5173"
+    working_dir: /srv/app
+    volumes:
+      - type: bind
+        source: frontend/
+        target: /srv/app
+    tty: true
+    restart: always
+
+        
